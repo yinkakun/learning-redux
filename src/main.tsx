@@ -1,8 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './app';
-import store from './store';
-import { fetchCharacters } from './characters-slice';
+import store from './store/store';
 import { Provider } from 'react-redux';
 import './index.css';
 
