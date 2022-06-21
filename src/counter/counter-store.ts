@@ -1,5 +1,3 @@
-// Action creators
-
 enum ActionTypes {
   INCREMENT,
   DECREMENT,
@@ -19,33 +17,31 @@ interface IncrementByAmountAction {
   payload: number;
 }
 
-export type CounterActions =
+type CounterActions =
   | IncrementAction
   | DecremementAction
   | IncrementByAmountAction;
 
-export const increment = (): IncrementAction => {
+const increment = (): IncrementAction => {
   return {
     type: ActionTypes.INCREMENT,
   };
 };
 
-export const decrement = (): DecremementAction => {
+const decrement = (): DecremementAction => {
   return {
     type: ActionTypes.DECREMENT,
   };
 };
 
-export const incrementByAmount = (amount: number): IncrementByAmountAction => {
+const incrementByAmount = (amount: number): IncrementByAmountAction => {
   return {
     type: ActionTypes.INCREMENT_BY_AMOUNT,
     payload: amount,
   };
 };
 
-// Reducer
-
-export interface CounterState {
+interface CounterState {
   value: number;
 }
 
@@ -53,10 +49,7 @@ const initialState: CounterState = {
   value: 0,
 };
 
-export const counterReducer = (
-  state = initialState,
-  action: CounterActions
-) => {
+const counterReducer = (state = initialState, action: CounterActions) => {
   if (action.type === ActionTypes.INCREMENT) {
     return {
       ...state,
@@ -80,3 +73,5 @@ export const counterReducer = (
 
   return state;
 };
+
+export { counterReducer, increment, decrement, incrementByAmount };
