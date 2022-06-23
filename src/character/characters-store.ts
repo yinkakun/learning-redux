@@ -6,23 +6,23 @@ interface Character {
   gender: string;
 }
 
-enum ActionTypes {
-  REQUEST_PENDING,
-  REQUEST_SUCCESS,
-  REQUEST_FAILURE,
+const enum CharactrersActionTypes {
+  REQUEST_PENDING = 'REQUEST_PENDING',
+  REQUEST_SUCCESS = 'REQUEST_SUCCESS',
+  REQUEST_FAILURE = 'REQUEST_FAILURE',
 }
 
 interface RequestCharactersPending {
-  type: ActionTypes.REQUEST_PENDING;
+  type: CharactrersActionTypes.REQUEST_PENDING;
 }
 
 interface RequestCharactersSuccess {
-  type: ActionTypes.REQUEST_SUCCESS;
+  type: CharactrersActionTypes.REQUEST_SUCCESS;
   payload: Character[];
 }
 
 interface RequestCharactersFailure {
-  type: ActionTypes.REQUEST_FAILURE;
+  type: CharactrersActionTypes.REQUEST_FAILURE;
   payload: string | null;
 }
 
@@ -34,20 +34,20 @@ type CharactersActions =
 const requestCharactersPending: ActionCreator<
   RequestCharactersPending
 > = () => ({
-  type: ActionTypes.REQUEST_PENDING,
+  type: CharactrersActionTypes.REQUEST_PENDING,
 });
 
 const requestCharactersSuccess: ActionCreator<RequestCharactersSuccess> = (
   characters: Character[]
 ) => ({
-  type: ActionTypes.REQUEST_SUCCESS,
+  type: CharactrersActionTypes.REQUEST_SUCCESS,
   payload: characters,
 });
 
 const requestCharactersFailure: ActionCreator<RequestCharactersFailure> = (
   error: string
 ) => ({
-  type: ActionTypes.REQUEST_FAILURE,
+  type: CharactrersActionTypes.REQUEST_FAILURE,
   payload: error,
 });
 
@@ -86,14 +86,14 @@ const initialState: CharactersState = {
 };
 
 const charactersReducer = (state = initialState, action: CharactersActions) => {
-  if (action.type === ActionTypes.REQUEST_PENDING) {
+  if (action.type === CharactrersActionTypes.REQUEST_PENDING) {
     return {
       ...state,
       loading: true,
     };
   }
 
-  if (action.type === ActionTypes.REQUEST_SUCCESS) {
+  if (action.type === CharactrersActionTypes.REQUEST_SUCCESS) {
     return {
       ...state,
       loading: false,
@@ -101,7 +101,7 @@ const charactersReducer = (state = initialState, action: CharactersActions) => {
     };
   }
 
-  if (action.type === ActionTypes.REQUEST_FAILURE) {
+  if (action.type === CharactrersActionTypes.REQUEST_FAILURE) {
     return {
       ...state,
       loading: false,

@@ -27,5 +27,3 @@ const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 export default store;
 export type { RootState, AppDispatch };
 export { useAppDispatch, useAppSelector };
-
-console.log('store', store.getState());
